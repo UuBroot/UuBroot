@@ -2,9 +2,9 @@ new TypeIt("#title", {
     speed: 50,
     waitUntilVisible: true,
 })
-    .type("This is my", { delay: 300 })
+    .type("This is my", { delay: 1300 })
     .delete(2)
-    .type("UuBroots")
+    .type("UuBroot's")
     .move(null, { to: "END" })
     .type(" homepage :)")
     .go();
@@ -21,39 +21,8 @@ if (BABYLON.Engine.isSupported()) {
     var engine = new BABYLON.Engine(canvas, true);
     var scene = new BABYLON.Scene(engine);
 
-    camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(0, 0, 20), scene);
+    camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(0, 0, 360), scene);
     let sun = new BABYLON.PointLight("Omni0", new BABYLON.Vector3(60, 100, 10), scene);
-
-    /*
-    const animation = new BABYLON.Animation(
-        "cameraRotation",
-        "position",
-        30,
-        BABYLON.Animation.ANIMATIONTYPE_VECTOR3,
-        BABYLON.Animation.ANIMATIONLOOPMODE_CYCLE
-    );
-      
-      // Define keyframes for the animation
-      const keys = [];
-      keys.push({
-        frame: 0,
-        value: new BABYLON.Vector3(0, 0, 20)
-      });
-      keys.push({
-        frame: 100,
-        value: new BABYLON.Vector3(Math.PI * 2 , 0, 20)
-      });
-      
-      // Assign the keyframes to the animation
-      animation.setKeys(keys);
-      
-      // Apply the animation to the camera
-      camera.animations.push(animation);
-      
-      // Start the animation
-      scene.beginAnimation(camera, 0, 100, true);
-*/
-
 
     var extraGround = BABYLON.Mesh.CreateGround("extraGround", 1000, 1000, 1, scene, false);
     var extraGroundMaterial = new BABYLON.StandardMaterial("extraGround", scene);
@@ -85,29 +54,14 @@ function mouseMoveHandler(e) {
     //console.log("mousex: ",mouseX);
     //console.log("mousey: ",mouseY);
 
-    let rotationY = mouseX / 420;
-    let rotationX = mouseY/200 *-1;
+    let rotationY = mouseX / 7020;
+    let rotationX = (mouseY - 500)/2000;
 
     camera.rotation.y = rotationY;
     camera.rotation.x = rotationX;
 }
 
 function mouseScrollHandler(e) {
-    console.log(camera.position.y)
-
-    if(camera.position.y <= 0){
-        if(e.deltaY < 0){
-            console.log("smaller")
-    
-            camera.position.y = camera.position.y + 0.1;
-        }
-        else if(e.deltaY > 0) {
-            console.log("bigger")
-            camera.position.y = camera.position.y - 0.1;
-        }
-    }
-    else{
-        camera.position.y = 0;
-    }
-
+    console.log(window.pageYOffset*-1)
+    camera.position.y = (window.pageYOffset/100)*-1;
 }

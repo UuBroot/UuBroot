@@ -11,9 +11,9 @@
  }
 
  header {
-    position: sticky;
-    background-color: rgba(223, 223, 223, 0.377);
-    height: 10%;
+    position: fixed;
+    top: 0;
+    background-color: rgba(223, 223, 223, 0.658);
     width: 100%;
 
     display: flex;
