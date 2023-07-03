@@ -31,6 +31,7 @@ nav {
 main {
     margin-top: 20%;
     width: 70%;
+    height: 100%;
     
     margin-left: auto;
     margin-right: auto;
@@ -40,8 +41,8 @@ main {
 }
 #background {
     width: 100vw;
-    height: 100vw;
-    z-index: 50;
+    height: 100vh;
+    z-index: -50;
     position: fixed;
     top: 0;
     left: 0;

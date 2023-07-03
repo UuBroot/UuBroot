@@ -1,12 +1,17 @@
 new TypeIt("#title", {
-    strings: "This is a simple string.",
     speed: 50,
     waitUntilVisible: true,
-}).go();
+})
+    .type("This is my", { delay: 300 })
+    .delete(2)
+    .type("UuBroots")
+    .move(null, { to: "END" })
+    .type(" homepage :)")
+    .go();
 
 //Events
-//document.addEventListener("mousemove", mouseMoveHandler, false);
-
+document.addEventListener("mousemove", mouseMoveHandler, false);
+document.addEventListener("wheel", mouseScrollHandler, false);
 
 
 let camera;
@@ -50,17 +55,6 @@ if (BABYLON.Engine.isSupported()) {
 */
 
 
-
-    // Skybox
-    var skybox = BABYLON.Mesh.CreateBox("skyBox", 1000.0, scene);
-    var skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
-    skyboxMaterial.backFaceCulling = false;
-    skyboxMaterial.reflectionTexture = new BABYLON.CubeTexture("skybox/skybox", scene);
-    skyboxMaterial.reflectionTexture.coordinatesMode = BABYLON.Texture.SKYBOX_MODE;
-    skyboxMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
-    skyboxMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
-    skybox.material = skyboxMaterial;
-
     var extraGround = BABYLON.Mesh.CreateGround("extraGround", 1000, 1000, 1, scene, false);
     var extraGroundMaterial = new BABYLON.StandardMaterial("extraGround", scene);
     extraGroundMaterial.diffuseTexture = new BABYLON.Texture("ground.jpg", scene);
@@ -88,12 +82,32 @@ function mouseMoveHandler(e) {
     const mouseX = e.clientX;
     const mouseY = e.clientY;
 
-    console.log("mousex: ",mouseX);
-    console.log("mousey: ",mouseY);
+    //console.log("mousex: ",mouseX);
+    //console.log("mousey: ",mouseY);
 
     let rotationY = mouseX / 420;
     let rotationX = mouseY/200 *-1;
 
     camera.rotation.y = rotationY;
     camera.rotation.x = rotationX;
+}
+
+function mouseScrollHandler(e) {
+    console.log(camera.position.y)
+
+    if(camera.position.y <= 0){
+        if(e.deltaY < 0){
+            console.log("smaller")
+    
+            camera.position.y = camera.position.y + 0.1;
+        }
+        else if(e.deltaY > 0) {
+            console.log("bigger")
+            camera.position.y = camera.position.y - 0.1;
+        }
+    }
+    else{
+        camera.position.y = 0;
+    }
+
 }
