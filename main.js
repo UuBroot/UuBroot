@@ -10,11 +10,11 @@ new TypeIt("#title", {
     .go();
 
 //Events
-//document.addEventListener("mousemove", mouseMoveHandler, false);
-//document.addEventListener("wheel", mouseScrollHandler, false);
+document.addEventListener("mousemove", mouseMoveHandler, false);
+document.addEventListener("wheel", mouseScrollHandler, false);
 
 
-//let camera;
+let camera;
 // Babylon
 /*
 if (BABYLON.Engine.isSupported()) {
@@ -23,9 +23,7 @@ if (BABYLON.Engine.isSupported()) {
     var engine = new BABYLON.Engine(canvas, true);
     var scene = new BABYLON.Scene(engine);
 
-    camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(0, 0, 360), scene);
     let sun = new BABYLON.PointLight("Omni0", new BABYLON.Vector3(60, 100, 10), scene);
-    camera.attachControl(canvas, true);
 
     
    /* var extraGround = BABYLON.Mesh.CreateGround("extraGround", 1000, 1000, 1, scene, false);
@@ -64,8 +62,7 @@ var createScene = function () {
     var scene = new BABYLON.Scene(engine);
 
     // Add a camera to the scene and attach it to the canvas
-    var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI / 2, Math.PI / 2, 2, new BABYLON.Vector3(0,0,5), scene);
-    camera.attachControl(canvas, true);
+    camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(0, 0, 0), scene);
 
     // Add lights to the scene
     var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
@@ -73,7 +70,7 @@ var createScene = function () {
 
     // Add and manipulate meshes in the scene
     var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter:2}, scene);
-    BABYLON.SceneLoader.ImportMeshAsync("main", "./assets/", "main.babylon"); //Name of the model loads one model
+    BABYLON.SceneLoader.ImportMeshAsync("", "./assets/", "main.glb"); //Name of the model loads one model
 
     return scene;
 };
