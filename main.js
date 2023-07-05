@@ -67,7 +67,7 @@ let createScene = function () {
         camera // The camera to apply the render pass to.
     );
     motionblur.isObjectBased = false;
-    motionblur.motionStrength = 70;
+    motionblur.motionStrength = 30;
 
     return scene;
 };
