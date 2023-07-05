@@ -22,6 +22,7 @@
 
     <link rel="stylesheet" href="./style.css">
     <script src="./main.js" defer></script>
+    <script src="./projects.js" async></script>
 
 </head>
 <body>
@@ -30,9 +31,8 @@
 
         <nav>
 
-            <div class="navElem">itgendwos</div>
-            <div class="navElem">asdfasdf</div>
-            <div class="navElem">sdaf</div>
+            <a class="navElem" href="#socialmedia">Social Media</a>
+            <a class="navElem" href="#projects">Projects</a>
 
         </nav>
 
@@ -42,21 +42,54 @@
         
         <h1 id="title"></h1>
 
-        <h1>dsadsd</h1>
-        <h1>dsadsd</h1>
-        <h1>dsadsd</h1>
-        <h1>dsadsd</h1>
-        <h1>dsadsd</h1>
-        <h1>dsadsd</h1>
-        <h1>dsadsd</h1>
-        <h1>dsadsd</h1>
-        <h1>dsadsd</h1>
-        <h1>dsadsd</h1>
-        <h1>dsadsd</h1>
-        <h1>dsadsd</h1>
-        <h1>dsadsd</h1>
-        <h1>dsadsd</h1>
-        <h1>dsadsd</h1>
+        <div id="social-media-box">
+
+            <h1 id="socialmedia">Social Media</h1>
+
+            <div class="flex-box" id="social-media-box-inner">
+
+                <div class="social-medias">
+                    <img src="./assets/tumblr.svg" alt="Tumblr" class="social-media-logos">
+                
+                    <div class="overlay">
+                        <h2>Tumblr: @UuBroot</h1>
+                        <p onclick="openPage('https://uubroot.tumblr.com', 'new')">Go to blog →</p>
+                    </div>
+                    
+                
+                </div>
+
+                <div class="social-medias">
+                    <img src="./assets/discord.svg" alt="Discord" class="social-media-logos">
+                
+                    <div class="overlay">
+                        <h2>Discord: uubroot</h1>
+                        <p onclick="openPage('https://discord.com/users/466244280080531488', 'new')">Open discord →</p>
+                    </div>
+                    
+                
+                </div>
+
+                <div class="social-medias">
+                    <img src="./assets/steam.svg" alt="Steam" class="social-media-logos">
+                
+                    <div class="overlay">
+                        <h2>Steam: UuBroot</h1>
+                        <p onclick="openPage('https://steamcommunity.com/id/UuBroot', 'new')">Go to page →</p>
+                    </div>
+                
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="projects-box">
+            <h1 id="projects">Projects</h1>
+
+            <div id="project-contnent"></div>
+
+        </div>
 
     </main>
 

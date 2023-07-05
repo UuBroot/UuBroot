@@ -1,3 +1,24 @@
+/******************
+ * Long term uses *
+ ******************/
+
+function openPage(url, type) {
+    switch(type){
+        case "new":
+            window.open(url);
+            break;
+        case "this":
+            window.location.replace(url);
+            break;
+        default:
+            alert("an error accured while trying to change sites");
+            break;
+    }
+}
+
+/**********
+ * TypeIt *
+ **********/
 new TypeIt("#title", {
     speed: 50,
     waitUntilVisible: true,
@@ -9,54 +30,20 @@ new TypeIt("#title", {
     .type(" homepage :)")
     .go();
 
-//Events
+/**********
+ * Events *
+ **********/
 document.addEventListener("mousemove", mouseMoveHandler, false);
-document.addEventListener("wheel", mouseScrollHandler, false);
 
-
+/****************
+ * Babylon JS   *
+ ****************/
 let camera;
-// Babylon
-/*
-if (BABYLON.Engine.isSupported()) {
-    
-    var canvas = document.getElementById("background");
-    var engine = new BABYLON.Engine(canvas, true);
-    var scene = new BABYLON.Scene(engine);
-
-    let sun = new BABYLON.PointLight("Omni0", new BABYLON.Vector3(60, 100, 10), scene);
-
-    
-   /* var extraGround = BABYLON.Mesh.CreateGround("extraGround", 1000, 1000, 1, scene, false);
-    var extraGroundMaterial = new BABYLON.StandardMaterial("extraGround", scene);
-    extraGroundMaterial.diffuseTexture = new BABYLON.Texture("ground.jpg", scene);
-    extraGroundMaterial.diffuseTexture.uScale = 60;
-    extraGroundMaterial.diffuseTexture.vScale = 60;
-    extraGround.position.y = -2.05;
-    extraGround.material = extraGroundMaterial;
-
-    var ground = BABYLON.Mesh.CreateGroundFromHeightMap("ground", "heightMap.png", 100, 100, 100, 0, 10, scene, false);
-    var groundMaterial = new BABYLON.StandardMaterial("ground", scene);
-    groundMaterial.diffuseTexture = new BABYLON.Texture("ground.jpg", scene);
-    groundMaterial.diffuseTexture.uScale = 6;
-    groundMaterial.diffuseTexture.vScale = 6;
-    groundMaterial.specularColor = new BABYLON.Color3(0, 0, 0);
-    ground.position.y = -2.0;
-    ground.material = groundMaterial;
-*//*
-    BABYLON.SceneLoader.ImportMeshAsync("main", "./assets/", "main.babylon"); //Name of the model loads one model
-
-    engine.runRenderLoop(function () {
-        scene.render();
-    });
-}*/
-
-
-
-var canvas = document.getElementById("background"); // Get the canvas element 
-var engine = new BABYLON.Engine(canvas, true);  // Generate the BABYLON 3D engine
+let canvas = document.getElementById("background"); // Get the canvas element 
+let engine = new BABYLON.Engine(canvas, true);  // Generate the BABYLON 3D engine
 
 /******* Add the create scene function ******/
-var createScene = function () {
+let createScene = function () {
 
     // Create the scene space
     var scene = new BABYLON.Scene(engine);
@@ -72,6 +59,16 @@ var createScene = function () {
     var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter:2}, scene);
     BABYLON.SceneLoader.ImportMeshAsync("", "./assets/", "main.glb"); //Name of the model loads one model
 
+    //motion blur
+    var motionblur = new BABYLON.MotionBlurPostProcess(
+        "mb", // The name of the effect.
+        scene, // The scene containing the objects to blur according to their velocity.
+        1.0, // The required width/height ratio to downsize to before computing the render pass.
+        camera // The camera to apply the render pass to.
+    );
+    motionblur.isObjectBased = false;
+    motionblur.motionStrength = 70;
+
     return scene;
 };
 /******* End of the create scene function ******/    
@@ -79,13 +76,10 @@ var createScene = function () {
 let scene = createScene(); //Call the createScene function
 engine.runRenderLoop(function () { 
     scene.render();
+    mouseScrollHandler()
 });
 
-
-
-
-
-
+/*The mouse and scoll behavior of the 3D Scene*/
 
 function mouseMoveHandler(e) {
     // Get the mouse coordinates relative to the canvas or scene
@@ -102,7 +96,11 @@ function mouseMoveHandler(e) {
     camera.rotation.x = rotationX;
 }
 
-function mouseScrollHandler(e) {
+function mouseScrollHandler() {
     console.log(window.pageYOffset*-1)
     camera.position.y = (window.pageYOffset/100)*-1;
 }
+
+/****************
+ * Social Media *
+ ****************/
