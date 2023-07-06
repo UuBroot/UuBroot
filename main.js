@@ -52,11 +52,8 @@ let createScene = function () {
     camera = new BABYLON.UniversalCamera("UniversalCamera", new BABYLON.Vector3(0, 0, 0), scene);
 
     // Add lights to the scene
-    var light1 = new BABYLON.HemisphericLight("light1", new BABYLON.Vector3(1, 1, 0), scene);
-    var light2 = new BABYLON.PointLight("light2", new BABYLON.Vector3(0, 1, -1), scene);
 
     // Add and manipulate meshes in the scene
-    var sphere = BABYLON.MeshBuilder.CreateSphere("sphere", {diameter:2}, scene);
     BABYLON.SceneLoader.ImportMeshAsync("", "./assets/", "main.glb"); //Name of the model loads one model
 
     //motion blur
@@ -67,7 +64,9 @@ let createScene = function () {
         camera // The camera to apply the render pass to.
     );
     motionblur.isObjectBased = false;
-    motionblur.motionStrength = 30;
+    motionblur.motionStrength = 10;
+
+    scene.clearColor = new BABYLON.Color4(0, 0, 0, 0);
 
     return scene;
 };
